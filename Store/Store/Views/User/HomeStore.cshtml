@@ -1,0 +1,10 @@
+﻿@inject IHttpContextAccessor context
+@{
+    ViewData["Title"] = "HomeStore";
+}
+
+<h1>HomeStore</h1>
+
+<h1>Welcome User</h1>
+
+@context.HttpContext.Session.GetString("Name");

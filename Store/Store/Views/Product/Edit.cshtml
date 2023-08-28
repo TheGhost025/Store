@@ -1,0 +1,22 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post" asp-action="Save1" asp-controller="Product">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="Id" hidden />
+    <partial name="_NewEditForm" />
+
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<a href="/Product/MyProducts" class="btn btn-outline-success">Go Back to Table</a>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

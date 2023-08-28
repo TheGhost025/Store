@@ -27,7 +27,9 @@
     </li>
 </ul>
 
-<form>
+<span class="text-danger">@ViewData["Error"]</span>
+
+<form method="get" asp-action="LogInCustomer" asp-controller="User">
     <div class="form-group">
         <label asp-for="Email"></label>
         <input asp-for="Email" class="form-control" placeholder="Email"/>
