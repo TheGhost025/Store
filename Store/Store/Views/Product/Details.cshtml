@@ -1,20 +1,73 @@
 ﻿@model Product
-
+@inject IHttpContextAccessor context
 @{
     ViewData["Title"] = "Details";
 }
+
+@if (context.HttpContext.Session.GetInt32("KindUser") == 0)
+{
+    @section Header {
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <p class="navbar-brand">Welcome @context.HttpContext.Session.GetString("Name")</p>
+            <a class="navbar-brand" href="#!">Amazon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Product/Search">Search</a></li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    }
+}
+else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
+{
+    @section Header {
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <p class="navbar-brand">Welcome @context.HttpContext.Session.GetString("Name")</p>
+            <a class="navbar-brand" href="#!">Amazon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Product/Search">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Product/MyProducts">My Products</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    }
+}
+
 
 <h1>Details</h1>
 
 <div class="d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/Images/@Model.Image" alt="Card image cap">
+        <img class="card-img-top" src="/Image/@Model.Image" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
-            <p class="card-text">Descripyion: @Model.Description</p>
+            <p class="card-text">Description: @Model.Description</p>
             <p class="card-text">Quantity: @Model.Quantity</p>
-            <p class="card-text">Department: @Model.Price</p>
-            <a href="/Product/MyProducts" class="btn btn-primary">Go Back</a>
+            <p class="card-text">Price: @Model.Price</p>
+            @if (@context.HttpContext.Session.GetInt32("ID") == 1)
+            {
+                <a href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")" class="btn btn-primary">Go Back</a>
+            }
+            else if (@context.HttpContext.Session.GetInt32("ID") == 0)
+            {
+                <a href="/User/HomeStore" class="btn btn-primary">Go Back</a>
+            }
         </div>
     </div>
 </div>

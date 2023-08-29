@@ -62,6 +62,7 @@ namespace Store.Controllers
             {
                 HttpContext.Session.SetString("Name", cus.Name);
                 HttpContext.Session.SetInt32("ID", cus.Id);
+                HttpContext.Session.SetInt32("KindUser", 0);
                 return View("HomeStore");
             }
             else
@@ -78,6 +79,7 @@ namespace Store.Controllers
             {
                 _context.HttpContext.Session.SetString("Name", sell.Name);
                 _context.HttpContext.Session.SetInt32("ID", sell.Id);
+                HttpContext.Session.SetInt32("KindUser", 1);
                 return View("HomeStore");
             }
             else

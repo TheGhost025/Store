@@ -2,8 +2,12 @@
 using Store.MetaData;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace Store.Models
 {
+    using System.ComponentModel;
+    using System.Web;
+
     [ModelMetadataType(typeof(ProductMetaData))]
     public class Product
     {
@@ -13,6 +17,9 @@ namespace Store.Models
         public int Quantity { get; set; }
         public double Price { get; set; }
         public string? Image { get; set; }
+        [DisplayName("Upload Image File")]
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
         [ForeignKey("Seller")]
         public int sell_id { get; set; }
 
