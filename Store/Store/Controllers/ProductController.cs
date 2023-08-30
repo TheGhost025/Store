@@ -53,6 +53,8 @@ namespace Store.Controllers
 
         public IActionResult Details(int id) 
         {
+            List<Cart> cart = context.Cart.ToList();
+            ViewData["Carts"] = cart;
             Product product = context.Product.FirstOrDefault(x => x.Id == id);
             return View(product);
         }
@@ -90,6 +92,8 @@ namespace Store.Controllers
 
         public IActionResult Search(string searchString)
         {
+            List<Cart> cart = context.Cart.ToList();
+            ViewData["Carts"] = cart;
             List<Product> products = context.Product.ToList();
             if (!String.IsNullOrEmpty(searchString))
             {

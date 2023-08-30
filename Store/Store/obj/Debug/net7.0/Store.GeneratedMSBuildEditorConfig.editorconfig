@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\assfile\Store\Store\Store
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/assfile/Store/Store/Store/Views/Cart/CartView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDYXJ0Vmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/assfile/Store/Store/Store/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/assfile/Store/Store/Store/Views/Product/_NewEditform.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfTmV3RWRpdGZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/assfile/Store/Store/Store/Views/Shared/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/assfile/Store/Store/Store/Views/Shared/Error.cshtml]

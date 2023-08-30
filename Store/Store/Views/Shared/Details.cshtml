@@ -1,12 +1,13 @@
-﻿@inject IHttpContextAccessor context
+﻿@model Product
+@inject IHttpContextAccessor context
 @{
-    ViewData["Title"] = "HomeStore";
+    ViewData["Title"] = "Details";
     List<Cart> carts = ViewBag.Carts;
     carts = carts.Where(x => x.cust_id == context.HttpContext.Session.GetInt32("ID")).ToList();
     int numbers = carts.Count;
 }
 
-@if ( context.HttpContext.Session.GetInt32("KindUser") == 0)
+@if (context.HttpContext.Session.GetInt32("KindUser") == 0)
 {
     @section Header {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,7 +44,7 @@ else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Product/Search">Search</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")">My Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Product/MyProducts">My Products</a></li>
                 </ul>
             </div>
         </div>
@@ -51,6 +52,40 @@ else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
     }
 }
 
-<h1>HomeStore</h1>
 
-<h1>Welcome User</h1>
+<h1>Details</h1>
+
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/Image/@Model.Image" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">Description: @Model.Description</p>
+            <p class="card-text">Quantity: @Model.Quantity</p>
+            <p class="card-text">Price: @Model.Price</p>
+            @if (@context.HttpContext.Session.GetInt32("KindUser") == 1)
+            {
+                <a href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")" class="btn btn-primary">Go Back</a>
+            }
+            else if (@context.HttpContext.Session.GetInt32("KindUser") == 0)
+            {
+                @if (Model.Quantity != 0)
+                {
+                    <form method="post" asp-action="AddCart" asp-controller="Cart">
+                        <input name="cust_Id" value="@context.HttpContext.Session.GetInt32("ID")" hidden />
+                        <span class="text-danger">@ViewData["Error"]</span>
+                        <input asp-for="@Model.Quantity" name="Quantity" min="1" max="@Model.Quantity" />
+                        <input asp-for="@Model.Id" name="prod_Id" hidden />
+                        <button type="submit" class="btn btn-primary">Add To Cart</button>
+                    </form>
+                }
+                else
+                {
+                    <button class="btn btn-secondary btn-lg disabled" aria-disabled="true">Out Of Stock</button>
+                }
+                <br />
+                <a href="/User/HomeStore" class="btn btn-primary">Go Back</a>
+            }
+        </div>
+    </div>
+</div>

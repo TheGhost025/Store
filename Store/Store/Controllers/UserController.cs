@@ -37,6 +37,8 @@ namespace Store.Controllers
 
         public IActionResult HomeStore()
         {
+            List<Cart> cart = context.Cart.ToList();
+            ViewData["Carts"] = cart;
             return View();
         }
 
@@ -60,6 +62,8 @@ namespace Store.Controllers
             Customer cus = context.Customer.FirstOrDefault(x => x.Email == customer.Email && x.Password == customer.Password);
             if (cus != null)
             {
+                List<Cart> cart = context.Cart.ToList();
+                ViewData["Carts"] = cart;
                 HttpContext.Session.SetString("Name", cus.Name);
                 HttpContext.Session.SetInt32("ID", cus.Id);
                 HttpContext.Session.SetInt32("KindUser", 0);
