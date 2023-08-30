@@ -58,5 +58,15 @@ namespace Store.Controllers
             ViewData["Products"] = context.Product.ToList();
             return View(cart);
         }
+
+        public IActionResult Update(Cart cart) 
+        {
+            context.Cart.Update(cart);
+            context.SaveChanges();
+            int? id = HttpContext.Session.GetInt32("ID");
+            List<Cart> cart1 = context.Cart.Where(x => x.cust_id == id).ToList();
+            ViewData["Products"] = context.Product.ToList();
+            return View("CartView",cart1);
+        }
     }
 }
