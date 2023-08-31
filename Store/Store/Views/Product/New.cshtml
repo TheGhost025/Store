@@ -14,7 +14,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="/User/HomeStore">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Product/Search">Search</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">My Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")">My Products</a></li>
                 </ul>
             </div>
         </div>
@@ -28,7 +28,7 @@
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
 
-<a href="/Product/MyProducts" class="btn btn-outline-success">Go Back to Table</a>
+<a href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")" class="btn btn-outline-success">Go Back to Table</a>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

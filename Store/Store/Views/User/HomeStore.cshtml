@@ -1,9 +1,13 @@
 ﻿@inject IHttpContextAccessor context
 @{
     ViewData["Title"] = "HomeStore";
-    List<Cart> carts = ViewBag.Carts;
-    carts = carts.Where(x => x.cust_id == context.HttpContext.Session.GetInt32("ID")).ToList();
-    int numbers = carts.Count;
+    int numbers = 0;
+    if(context.HttpContext.Session.GetInt32("KindUser") == 0)
+    {
+        List<Cart> carts = ViewBag.Carts;
+        carts = carts.Where(x => x.cust_id == context.HttpContext.Session.GetInt32("ID")).ToList();
+        numbers = carts.Count;
+    }
 }
 
 @if ( context.HttpContext.Session.GetInt32("KindUser") == 0)
