@@ -17,13 +17,27 @@ namespace Store.Controllers
 
         public IActionResult MyProducts(int Id)
         {
-            List<Product> products = context.Product.Where(x => x.sell_id == Id).ToList();
-            return View(products);
+            if (HttpContext.Session.GetString("Name") != null) 
+            {
+                List<Product> products = context.Product.Where(x => x.sell_id == Id).ToList();
+                return View(products);
+            }
+            else
+            {
+                return View("SignInCustomer");
+            }
         }
 
         public IActionResult New(Product product) 
         {
-            return View(product);
+            if (HttpContext.Session.GetString("Name") != null)
+            {
+                return View(product);
+            }
+            else
+            {
+                return View("SignInCustomer");
+            }
         }
 
         public async Task<IActionResult> Save(Product product) 
@@ -53,16 +67,30 @@ namespace Store.Controllers
 
         public IActionResult Details(int id) 
         {
-            List<Cart> cart = context.Cart.ToList();
-            ViewData["Carts"] = cart;
-            Product product = context.Product.FirstOrDefault(x => x.Id == id);
-            return View(product);
+            if(HttpContext.Session.GetString("Name") != null) 
+            {
+                List<Cart> cart = context.Cart.ToList();
+                ViewData["Carts"] = cart;
+                Product product = context.Product.FirstOrDefault(x => x.Id == id);
+                return View(product);
+            }
+            else
+            {
+                return View("SignInCustomer");
+            }
         }
 
         public IActionResult Edit(int id) 
         {
-            Product product = context.Product.FirstOrDefault(x => x.Id == id);
-            return View(product);
+            if(HttpContext.Session.GetString("Name") != null)
+            {
+                Product product = context.Product.FirstOrDefault(x => x.Id == id);
+                return View(product);
+            }
+            else
+            {
+                return View("SignInCustomer");
+            }
         }
 
         [HttpPost]

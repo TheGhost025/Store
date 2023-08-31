@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿ using Microsoft.AspNetCore.Mvc;
 using Store.Entities;
 using Store.Models;
 
@@ -37,9 +37,16 @@ namespace Store.Controllers
 
         public IActionResult HomeStore()
         {
-            List<Cart> cart = context.Cart.ToList();
-            ViewData["Carts"] = cart;
-            return View();
+            if(HttpContext.Session.GetString("Name") != null) 
+            {
+                List<Cart> cart = context.Cart.ToList();
+                ViewData["Carts"] = cart;
+                return View();
+            }
+            else
+            {
+                return View("SignInCustomer");
+            }
         }
 
         [HttpPost]
@@ -144,6 +151,12 @@ namespace Store.Controllers
             {
                 return Json(false);
             }
+        }
+
+        public IActionResult LogOut() 
+        {
+            HttpContext.Session.Clear();
+            return View("SignInCustomer");
         }
     }
 }
