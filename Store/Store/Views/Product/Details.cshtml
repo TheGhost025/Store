@@ -18,7 +18,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" aria-current="page" asp-action="HomeStore" asp-controller="User">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Search" asp-controller="Product">Search</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="History" asp-controller="Cart" asp-route-id="@context.HttpContext.Session.GetInt32("ID")">History</a></li>
                 </ul>
                 <div class="d-flex">
@@ -50,7 +49,6 @@ else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" aria-current="page" asp-action="HomeStore" asp-controller="User">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Search" asp-controller="Product">Search</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="MyProducts" asp-controller="Product" asp-route-id="@context.HttpContext.Session.GetInt32("ID")">My Products</a></li>
                 </ul>
                 <div class="d-flex">
@@ -70,7 +68,7 @@ else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
 
 <div class="d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/Image/@Model.Image" alt="Card image cap">
+        <img class="card-img-top" src="/Image/@Model.Image" alt="Card image cap" width="240" height="240">
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
             <p class="card-text">Description: @Model.Description</p>

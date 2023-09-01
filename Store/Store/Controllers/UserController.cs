@@ -37,7 +37,8 @@ namespace Store.Controllers
 
         public IActionResult HomeStore()
         {
-            if(HttpContext.Session.GetString("Name") != null) 
+            List<Product> products = context.Product.ToList();
+            if (HttpContext.Session.GetString("Name") != null) 
             {
                 List<Cart> cart = context.Cart.ToList();
                 ViewData["Carts"] = cart;
@@ -45,7 +46,7 @@ namespace Store.Controllers
             }
             else
             {
-                return View("SignInCustomer");
+                return View("SignInCustomer",products);
             }
         }
 
@@ -69,12 +70,13 @@ namespace Store.Controllers
             Customer cus = context.Customer.FirstOrDefault(x => x.Email == customer.Email && x.Password == customer.Password);
             if (cus != null)
             {
+                List<Product> products = context.Product.ToList();
                 List<Cart> cart = context.Cart.ToList();
                 ViewData["Carts"] = cart;
                 HttpContext.Session.SetString("Name", cus.Name);
                 HttpContext.Session.SetInt32("ID", cus.Id);
                 HttpContext.Session.SetInt32("KindUser", 0);
-                return View("HomeStore");
+                return View("HomeStore",products);
             }
             else
             {
@@ -88,10 +90,11 @@ namespace Store.Controllers
             Seller sell = context.Seller.FirstOrDefault(x => x.Email == seller.Email && x.Password == seller.Password);
             if (sell != null)
             {
+                List<Product> products = context.Product.ToList();
                 _context.HttpContext.Session.SetString("Name", sell.Name);
                 _context.HttpContext.Session.SetInt32("ID", sell.Id);
                 HttpContext.Session.SetInt32("KindUser", 1);
-                return View("HomeStore");
+                return View("HomeStore", products);
             }
             else
             {

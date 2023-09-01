@@ -1,4 +1,5 @@
 ﻿@inject IHttpContextAccessor context
+@model List<Product>
 @{
     ViewData["Title"] = "HomeStore";
     int numbers = 0;
@@ -20,8 +21,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Search" asp-controller="Product">Search</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="History" asp-controller="Cart" asp-route-id="@context.HttpContext.Session.GetInt32("ID")">History</a></li>
                 </ul>
                 <div class="d-flex">
@@ -53,7 +53,6 @@ else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Search" asp-controller="Product">Search</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="MyProducts" asp-controller="Product" asp-route-id="@context.HttpContext.Session.GetInt32("ID")">My Products</a></li>
                 </ul>
                 <div class="d-flex">
@@ -68,6 +67,33 @@ else if (context.HttpContext.Session.GetInt32("KindUser") == 1)
     }
 }
 
+@section Search {
+    <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Search">
+        <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="SearchString">
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+}
+
 <h1>HomeStore</h1>
 
-<h1>Welcome User</h1>
+<div class="container">
+    <div class="row row-cols-3">
+        @foreach (Product p in Model)
+        {
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/Image/@p.Image" class="card-img-top" alt="Card image cap" width="240" height="240">
+                    <div class="card-body">
+                        <h5 class="card-title">@p.Name</h5>
+                        <p class="card-text">Price: @p.Price</p>
+                        <a href="/Product/Details/@p.Id" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

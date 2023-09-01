@@ -137,7 +137,7 @@ namespace Store.Controllers
             {
                 products = products.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
             }
-            return View(products);
+            return View("HomeStore",products);
         }
 
         //public IActionResult Delete(int id) 
