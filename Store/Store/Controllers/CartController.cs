@@ -19,6 +19,8 @@ namespace Store.Controllers
                 {
                     context.Cart.Add(cart);
                     context.SaveChanges();
+                    List<Cart> carts = context.Cart.ToList();
+                    ViewData["Carts"] = carts;
                     return View("Details", product);
                 }
                 else
@@ -29,13 +31,15 @@ namespace Store.Controllers
             }
             else
             {
-                cart.Quantity = cart.Quantity + cart2.Quantity;
-                Product product = context.Product.FirstOrDefault(x => x.Id == cart.prod_id);
+                cart2.Quantity = cart.Quantity + cart2.Quantity;
+                Product product = context.Product.FirstOrDefault(x => x.Id == cart2.prod_id);
                 if(product.Quantity >= cart.Quantity)
                 {
-                    context.Cart.Update(cart); 
+                    context.Cart.Update(cart2); 
                     context.SaveChanges();
-                    return View("Detials",product);
+                    List<Cart> carts = context.Cart.ToList();
+                    ViewData["Carts"] = carts;
+                    return View("Details",product);
                 }
                 else
                 {

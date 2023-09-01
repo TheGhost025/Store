@@ -52,7 +52,7 @@ namespace Store.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
                 string extension = Path.GetExtension(product.ImageFile.FileName);
                 product.Image = fileName + DateTime.Now.ToString("yymmssff") + extension;
-                string path = Path.Combine(wwwRootPath + "/Image" , fileName);
+                string path = Path.Combine(wwwRootPath + "/Image" , product.Image);
                 using(var filestream = new FileStream(path, FileMode.Create))
                 {
                     await product.ImageFile.CopyToAsync(filestream);
@@ -61,7 +61,12 @@ namespace Store.Controllers
 
                 context.Product.Add(product);
                 context.SaveChanges();
-                return RedirectToAction("MyProducts");
+
+                int? Id = HttpContext.Session.GetInt32("ID");
+
+                List<Product> products = context.Product.Where(x => x.sell_id == Id).ToList();
+
+                return View("MyProducts",products);
             }
         }
 
@@ -110,7 +115,12 @@ namespace Store.Controllers
 
                 context.Product.Update(product);
                 context.SaveChanges();
-                return RedirectToAction("MyProducts");
+
+                int? Id = HttpContext.Session.GetInt32("ID");
+
+                List<Product> products = context.Product.Where(x => x.sell_id == Id).ToList();
+
+                return View("MyProducts", products);
             }
             else 
             {
@@ -125,7 +135,7 @@ namespace Store.Controllers
             List<Product> products = context.Product.ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                products = products.Where(x => x.Name!.Contains(searchString)).ToList();
+                products = products.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
             }
             return View(products);
         }

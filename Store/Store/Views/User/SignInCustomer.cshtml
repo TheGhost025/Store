@@ -4,42 +4,48 @@
 }
 
 <br />
- 
-<ul class="nav nav-pills nav-justified mb-3" id="ex2" role="tablist">
-    <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#" role="tab"
-           aria-controls="pills-login">Customer</a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/User/SignInSeller" role="tab"
-           aria-controls="pills-register">Seller</a>
-    </li>
-</ul>
 
-<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-    <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#" role="tab"
-           aria-controls="pills-login">Login</a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/User/SignUpCustomer" role="tab"
-           aria-controls="pills-register">Register</a>
-    </li>
-</ul>
+<div class="d-flex justify-content-center">
+    <div style="width:50rem;background-color:lightgray;border-radius: 25px 25px; box-shadow:2px 2px;">
+        <ul class="nav nav-pills nav-justified mb-3" id="ex2" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#" role="tab"
+                   aria-controls="pills-login">Customer</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" asp-action="SignInSeller" asp-controller="User" role="tab"
+                   aria-controls="pills-register">Seller</a>
+            </li>
+        </ul>
 
-<span class="text-danger">@ViewData["Error"]</span>
+        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#" role="tab"
+                   aria-controls="pills-login">Login</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" asp-action="SignUpCustomer" asp-controller="User" role="tab"
+                   aria-controls="pills-register">Register</a>
+            </li>
+        </ul>
 
-<form method="get" asp-action="LogInCustomer" asp-controller="User">
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" placeholder="Email"/>
+        <span class="text-danger">@ViewData["Error"]</span>
+
+        <form method="get" asp-action="LogInCustomer" asp-controller="User">
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+            </div>
+            <br />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+        </form>
     </div>
-    <br />
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Log In</button>
-</form>
+</div>
 <br />

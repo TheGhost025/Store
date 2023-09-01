@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "s5BtURJ5EpPun1jbLAvXs3SZRY0yoA/L88Yew7PHCDU=",
+  "Hash": "aDKCE8UdhmxJ6iRwWtb4JwyaOeRm71nOoqQrz6Z4ZLM=",
   "Source": "Store",
   "BasePath": "_content/Store",
   "Mode": "Default",
@@ -117,6 +117,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\assfile\\Store\\Store\\Store\\wwwroot\\Image\\223175052.jpg",
+      "SourceId": "Store",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\assfile\\Store\\Store\\Store\\wwwroot\\",
+      "BasePath": "_content/Store",
+      "RelativePath": "Image/223175052.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\223175052.jpg"
     },
     {
       "Identity": "D:\\assfile\\Store\\Store\\Store\\wwwroot\\Image\\download23581399.jpeg",

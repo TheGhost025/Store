@@ -8,16 +8,16 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <p class="navbar-brand">Welcome @context.HttpContext.Session.GetString("Name")</p>
-            <a class="navbar-brand" href="#!">Amazon</a>
+            <a class="navbar-brand" href="#">Amazon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/User/HomeStore">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Product/Search">Search</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")">My Products</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" asp-action="HomeStore" asp-controller="User">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-action="Search" asp-controller="Product">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-action="MyProducts" asp-controller="Product" asp-route-id="@context.HttpContext.Session.GetInt32("ID")">My Products</a></li>
                 </ul>
                 <div class="d-flex">
-                    <a class="btn btn-outline-danger" href="/User/LogOut">
+                    <a class="btn btn-outline-danger" asp-action="LogOut" asp-controller="User">
                         <i class="bi-cart-fill me-1"></i>
                         Log Out
                     </a>
@@ -29,15 +29,20 @@
 
 <h1>Edit</h1>
 
-<form method="post" asp-action="Save1" enctype="multipart/form-data">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <input asp-for="Id" hidden />
-    <partial name="_NewEditForm" />
+<div class="d-flex justify-content-center">
+    <div style="width:50rem;background-color:lightgray;border-radius: 25px 25px; box-shadow:2px 2px;">
+        <form method="post" asp-action="Save1" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Id" hidden />
+            <partial name="_NewEditForm" />
 
-    <button type="submit" class="btn btn-primary">Edit</button>
-</form>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-<a href="/Product/MyProducts/@context.HttpContext.Session.GetInt32("ID")" class="btn btn-outline-success">Go Back to Table</a>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
