@@ -42,11 +42,11 @@ namespace Store.Controllers
             {
                 List<Cart> cart = context.Cart.ToList();
                 ViewData["Carts"] = cart;
-                return View();
+                return View(products);
             }
             else
             {
-                return View("SignInCustomer",products);
+                return View("SignInCustomer");
             }
         }
 
