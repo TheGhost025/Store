@@ -150,7 +150,7 @@ namespace Store.Controllers
 
         public IActionResult CheckIntNegative(int Quantity)
         {
-            if (Quantity > 0)
+            if (Quantity >= 0)
             {
                 return Json(true);
             }

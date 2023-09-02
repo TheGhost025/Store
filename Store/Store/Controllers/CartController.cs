@@ -103,6 +103,7 @@ namespace Store.Controllers
             int? id1 = HttpContext.Session.GetInt32("ID");
             List<Cart> cart1 = context.Cart.Where(x => x.cust_id == id1).ToList();
             ViewData["Products"] = context.Product.ToList();
+            ViewData["Conferm"] = 1;
             return View("CartView",cart1);
         }
 
